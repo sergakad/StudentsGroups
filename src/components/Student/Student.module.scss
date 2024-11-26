@@ -1,0 +1,42 @@
+.student {
+  height: 250px;
+  width: 500px;
+  background-color: #d9d9d940;
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 70%;
+  transition: all 0.4s ease;
+  user-select: none;
+}
+
+.student:hover {
+  opacity: 100%;
+}
+
+.title {
+  font-size: 50px;
+  text-align: center;
+}
+
+.deleteStudent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: rgb(163, 0, 0);
+  font-weight: bold;
+  position: relative;
+  left: 460px;
+  font-size: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteStudent:hover {
+  background-color: rgb(255, 20, 20);
+}
+

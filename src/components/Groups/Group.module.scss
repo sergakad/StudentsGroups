@@ -1,0 +1,30 @@
+.groups {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 40px;
+    justify-items: center;
+    align-items: center;
+}
+
+.addGroup {
+  height: 250px;
+  width: 500px;
+  padding: 20px;
+  background-color: #02b48b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 70%;
+  transition: all 0.4s ease;
+  user-select: none;
+}
+.addGroup:hover {
+  opacity: 100%;
+}
+
+.title {
+  font-size: 70px;
+}
+
