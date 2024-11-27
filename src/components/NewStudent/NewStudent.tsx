@@ -10,6 +10,7 @@ const NewStudent: FC = () => {
   const setModalClose = useModalStateStore((state) => state.setModalClose);
   const setStudents = useStudentsStore((state) => state.setStudents);
   const setLoading = useStudentsStore((state) => state.setLoading);
+  const currentGroupID = useStudentsStore((state) => state.currentGroupID);
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setModalClose();
@@ -19,13 +20,13 @@ const NewStudent: FC = () => {
       const result = await PostStudent(
         newName,
         "https://ds32-lipeck-r42.gosweb.gosuslugi.ru/netcat_files/21/10/kj8DXcMNKxKdXLWAA8ZX5gRzo953pjvh_49.jpg",
-        10
+        currentGroupID
       );
       if (typeof result === "string") {
         console.error(result);
       } else {
         (async () => {
-          const newData = await GetStudent();
+          const newData = await GetStudent(currentGroupID);
           if (Array.isArray(newData)) {
             console.log(newData);
             setLoading(false);

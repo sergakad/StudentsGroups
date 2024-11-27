@@ -7,13 +7,14 @@ import s from "./Student.module.scss";
 
 const Student: FC<IStudent> = ({ name, id, photo }) => {
   const setStudents = useStudentsStore((state) => state.setStudents);
+  const currentGroupID = useStudentsStore((state)=>state.currentGroupID)
   const handleClick = async () => {
-    const result = await DeleteStudent(id);
+    const result = await DeleteStudent(id as number);
     if (typeof result === "string") {
       console.error(result);
     } else {
       (async () => {
-        const data = await GetStudent();
+        const data = await GetStudent(currentGroupID);
         if (Array.isArray(data)) {
           setStudents(data);
         }
@@ -27,7 +28,7 @@ const Student: FC<IStudent> = ({ name, id, photo }) => {
         <DeleteIcon />
       </div>
       <h3 className={s.title}>{name}</h3>
-      <img src = {photo} alt ='https://ds32-lipeck-r42.gosweb.gosuslugi.ru/netcat_files/21/10/kj8DXcMNKxKdXLWAA8ZX5gRzo953pjvh_49.jpg' />
+      <img className={s.logo} src = {photo} alt ='Лицо студента' />
     </div>
   );
 };

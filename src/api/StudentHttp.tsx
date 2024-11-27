@@ -3,10 +3,10 @@ import { IStudent } from "@/interface/student.interface";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const GetStudent = async (): Promise<IStudent[] | string> => {
+const GetStudent = async (groupID: number): Promise<IStudent[] | string> => {
   try {
     const { data, status } = await axios.get<IStudent[]>(
-      `${BASE_URL}/student`,
+      `${BASE_URL}/student?groupId=${groupID}`,
       {
         headers: { Accept: "application/json" },
       }

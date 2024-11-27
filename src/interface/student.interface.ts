@@ -10,6 +10,8 @@ export interface IStudents {
   setStudents: (val: IStudent[]) => void;
   isLoading: boolean;
   setLoading: (val: boolean) => void;
+  currentGroupID: number;
+  setCurrentGroupID: (val: number) => void;
 }
 
 export interface IModalState {

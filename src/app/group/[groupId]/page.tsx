@@ -1,41 +1,44 @@
 "use client";
 
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "next/navigation";
 import { useStudentsStore } from "@/stores/students-store";
 import { ArrowLeftIcon } from "@/components/SvgIcons/ArrowLeftIcon";
 import { GetStudent } from "@/api/StudentHttp";
 import { Students } from "@/components/Students";
 import s from "./page.module.scss";
 import Link from "next/link";
+import { useGroupsStore } from "@/stores/groups-store";
 
-interface Props {
-  params: {
-    title: string;
-  };
-}
-
-export default function PageStudents({ params }: Props) {
-  const [title, setTitle] = useState<string>(''); // Используем useState для title
+export default function PageStudents() {
+  const currentGroupID = useStudentsStore((state) => state.currentGroupID);
+  const setCurrentGroupID = useStudentsStore(
+    (state) => state.setCurrentGroupID
+  );
+  const { groupId } = useParams();
   const setStudents = useStudentsStore((state) => state.setStudents);
   const setLoading = useStudentsStore((state) => state.setLoading);
   const isLoading = useStudentsStore((state) => state.isLoading);
-  
+  const groups = useGroupsStore((state) => state.groups);
+
   useEffect(() => {
-    if (params && params.title) {
-      setTitle(params.title); 
+    if (groupId) {
+      setCurrentGroupID(Number(groupId));
     }
-  }, [params]);
+  }, [groupId, setCurrentGroupID]);
 
   useEffect(() => {
     (async () => {
-      const data = await GetStudent();
+      const data = await GetStudent(currentGroupID);
       if (Array.isArray(data)) {
         setStudents(data);
         setLoading(false);
       }
     })();
-  }, [setStudents, setLoading]);
+  }, [setStudents, setLoading, currentGroupID]);
+
+  const currentGroup = groups.find((group) => group.id === currentGroupID);
 
   return (
     <div className={s.page}>
@@ -45,7 +48,7 @@ export default function PageStudents({ params }: Props) {
             <ArrowLeftIcon />
           </Link>
 
-          <h2 className={s.title}>{decodeURIComponent(title)}</h2>
+          <h2 className={s.title}>{currentGroup?.title}</h2>
         </div>
         {!isLoading ? (
           <Students />

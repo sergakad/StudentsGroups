@@ -9,9 +9,13 @@ export const useStudentsStore = create(
     setStudents: (val) => {
       set({ students: val });
     },
-    isLoading:true,
+    isLoading: true,
     setLoading: (val) => {
       set({ isLoading: val });
+    },
+    currentGroupID: 0,
+    setCurrentGroupID: (val) => {
+      set({ currentGroupID: val });
     },
   }))
 );

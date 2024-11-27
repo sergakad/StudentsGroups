@@ -6,7 +6,7 @@ import { IGroup } from "@/interface/group.interface";
 import s from "./Group.module.scss";
 import Link from "next/link";
 
-const Group: FC<IGroup> = ({ title, id }) => {
+const Group: FC<IGroup> = ({ id, title }) => {
   const setGroups = useGroupsStore((state) => state.setGroups);
   const handleClick = async () => {
     const result = await DeleteGroup(id);
@@ -23,7 +23,7 @@ const Group: FC<IGroup> = ({ title, id }) => {
     }
   };
   return (
-    <Link href={`/group/${encodeURIComponent(title)}`} className={s.group}>
+    <Link href={`/group/${id}`} className={s.group}>
       <div className={s.deleteGroup} onClick={handleClick}>
         <DeleteIcon />
       </div>
