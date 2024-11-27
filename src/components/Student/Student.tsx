@@ -2,12 +2,12 @@ import { FC } from "react";
 import { DeleteIcon } from "@/components/SvgIcons/DeleteIcon";
 import { DeleteStudent, GetStudent } from "@/api/StudentHttp";
 import { useStudentsStore } from "@/stores/students-store";
-import { IStudent } from "@/interface/student.interface";
+import { IStudent } from "@/shared/interfaces/student.interface";
 import s from "./Student.module.scss";
 
-const Student: FC<IStudent> = ({ name, id, photo }) => {
+const Student: FC<IStudent> = ({ name, id /*photo*/ }) => {
   const setStudents = useStudentsStore((state) => state.setStudents);
-  const currentGroupID = useStudentsStore((state)=>state.currentGroupID)
+  const currentGroupID = useStudentsStore((state) => state.currentGroupID);
   const handleClick = async () => {
     const result = await DeleteStudent(id as number);
     if (typeof result === "string") {
@@ -27,8 +27,11 @@ const Student: FC<IStudent> = ({ name, id, photo }) => {
       <div className={s.deleteStudent} onClick={handleClick}>
         <DeleteIcon />
       </div>
-      <h3 className={s.title}>{name}</h3>
-      <img className={s.logo} src = {photo} alt ='Лицо студента' />
+      <div className={s.wrapper}>
+        {/* <img className={s.logo} src = {photo} alt ='Лицо студента' /> */}
+        <div className={s.logo} />
+        <h3 className={s.title}>{name}</h3>
+      </div>
     </div>
   );
 };

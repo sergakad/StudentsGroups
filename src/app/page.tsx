@@ -5,11 +5,13 @@ import { Groups } from "@/components/Groups";
 import { useEffect } from "react";
 import { useGroupsStore } from "@/stores/groups-store";
 import s from "./page.module.scss";
+import { useStudentsStore } from "@/stores/students-store";
 
 export default function Home() {
   const setGroups = useGroupsStore((state) => state.setGroups);
   const setLoading = useGroupsStore((state) => state.setLoading);
   const isLoading = useGroupsStore((state) => state.isLoading);
+  const setStudents = useStudentsStore((state) => state.setStudents);
 
   useEffect(() => {
     (async () => {
@@ -19,7 +21,8 @@ export default function Home() {
         setLoading(false);
       }
     })();
-  }, [setGroups, setLoading]);
+    setStudents([]);
+  }, []);
 
   return (
     <div className={s.page}>

@@ -1,15 +1,14 @@
 .groups {
-    display: grid;
-    grid-template-columns: auto auto auto;
-
-    gap: 40px;
-    justify-items: center;
-    align-items: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 40px;
+  justify-items: center;
+  align-items: center;
 }
 
 .addGroup {
   height: 250px;
-  width: 500px;
+  width: 450px;
   padding: 20px;
   background-color: #02b48b;
   display: flex;
@@ -28,4 +27,3 @@
 .title {
   font-size: 70px;
 }
-

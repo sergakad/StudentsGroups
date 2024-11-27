@@ -1,5 +1,5 @@
 .student {
-  height: 250px;
+  height: 300px;
   width: 500px;
   background-color: #d9d9d940;
   padding: 20px;
@@ -9,14 +9,23 @@
   transition: all 0.4s ease;
   user-select: none;
 }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 
 .student:hover {
   opacity: 100%;
 }
 
 .title {
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
+  margin: 0;
+  position: relative;
+  top: 50%;
 }
 
 .deleteStudent {
@@ -29,7 +38,7 @@
   background-color: rgb(163, 0, 0);
   font-weight: bold;
   position: relative;
-  left: 460px;
+  left: 420px;
   font-size: 30px;
   text-align: center;
   cursor: pointer;
@@ -40,7 +49,9 @@
   background-color: rgb(255, 20, 20);
 }
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
+  background-color: aliceblue;
+  border-radius: 100%;
 }
 

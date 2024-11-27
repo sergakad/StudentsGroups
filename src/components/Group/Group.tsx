@@ -2,7 +2,7 @@ import { FC } from "react";
 import { DeleteIcon } from "@/components/SvgIcons/DeleteIcon";
 import { DeleteGroup, GetGroup } from "@/api/GroupHttp";
 import { useGroupsStore } from "@/stores/groups-store";
-import { IGroup } from "@/interface/group.interface";
+import { IGroup } from "@/shared/interfaces/group.interface";
 import s from "./Group.module.scss";
 import Link from "next/link";
 
@@ -23,11 +23,14 @@ const Group: FC<IGroup> = ({ id, title }) => {
     }
   };
   return (
-    <Link href={`/group/${id}`} className={s.group}>
-      <div className={s.deleteGroup} onClick={handleClick}>
-        <DeleteIcon />
+    <Link href={`/group/${id}`}>
+      <div className={s.group}>
+        <div className={s.deleteGroup} onClick={handleClick}>
+          <DeleteIcon />
+        </div>
+
+        <h3 className={s.title}>{title}</h3>
       </div>
-      <h3 className={s.title}>{title}</h3>
     </Link>
   );
 };

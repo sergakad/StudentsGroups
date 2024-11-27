@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { IModalState } from "@/interface/group.interface";
-import { IGroups } from "@/interface/group.interface";
+import { IModalState } from "@/shared/interfaces/group.interface";
+import { IGroups } from "@/shared/interfaces/group.interface";
 
 export const useGroupsStore = create(
   devtools<IGroups>((set) => ({

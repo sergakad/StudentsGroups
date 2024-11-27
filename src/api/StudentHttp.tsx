@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IStudent } from "@/interface/student.interface";
+import { IStudent } from "@/shared/interfaces/student.interface";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 

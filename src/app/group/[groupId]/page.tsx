@@ -21,24 +21,21 @@ export default function PageStudents() {
   const setLoading = useStudentsStore((state) => state.setLoading);
   const isLoading = useStudentsStore((state) => state.isLoading);
   const groups = useGroupsStore((state) => state.groups);
+  const currentGroup = groups.find((group) => group.id === currentGroupID);
+
 
   useEffect(() => {
     if (groupId) {
       setCurrentGroupID(Number(groupId));
+      (async () => {
+        const data = await GetStudent(Number(groupId));
+        if (Array.isArray(data)) {
+          setStudents(data);
+          setLoading(false);
+        }
+      })();
     }
-  }, [groupId, setCurrentGroupID]);
-
-  useEffect(() => {
-    (async () => {
-      const data = await GetStudent(currentGroupID);
-      if (Array.isArray(data)) {
-        setStudents(data);
-        setLoading(false);
-      }
-    })();
-  }, [setStudents, setLoading, currentGroupID]);
-
-  const currentGroup = groups.find((group) => group.id === currentGroupID);
+  }, []);
 
   return (
     <div className={s.page}>

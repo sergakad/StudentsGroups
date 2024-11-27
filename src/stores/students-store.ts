@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { IModalState } from "@/interface/student.interface";
-import { IStudents } from "@/interface/student.interface";
+import { IModalState } from "@/shared/interfaces/student.interface";
+import { IStudents } from "@/shared/interfaces/student.interface";
 
 export const useStudentsStore = create(
   devtools<IStudents>((set) => ({

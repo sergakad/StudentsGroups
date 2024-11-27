@@ -20,7 +20,7 @@ const Modal: FC<IModalProps> = ({ trigger, children, title }) => {
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={s.overlay} onClick={setModalClose} />
-        <Dialog.Content className={s.content}>
+        <Dialog.Content className={s.content} >
           <Dialog.Title>{title}</Dialog.Title>
           {children}
         </Dialog.Content>

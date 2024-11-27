@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IGroup } from "@/interface/group.interface";
+import { IGroup } from "@/shared/interfaces/group.interface";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
