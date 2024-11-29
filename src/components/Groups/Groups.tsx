@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { Group } from "@/components/Group";
 import { useGroupsStore } from "@/stores/groups-store";
 // import { Modal } from "@/components/Modal";
-import { Modal } from "@/components/NewModal";
+import { Modal } from "@/components/Modal";
 import { NewGroup } from "@/components/NewGroup";
 import s from "./Groups.module.scss";
 
@@ -15,10 +15,8 @@ const Groups: FC = () => {
         return <Group key={group.id} id={group.id} title={group.title} />;
       })}
       <Modal
-        visible={isModalVisible}
-        onClick={() => {
-          setModalVisible(true);
-        }}
+        isActive={isModalVisible}
+        onActiveChange={setModalVisible}
         trigger={
           <div className={s.addGroup}>
             <h3 className={s.title}>+</h3>
@@ -26,15 +24,6 @@ const Groups: FC = () => {
         }
         content={<NewGroup />}
       />
-      {/* <Modal
-        trigger={
-          <div className={s.addGroup}>
-            <h3 className={s.title}>+</h3>
-          </div>
-        }
-      >
-        <NewGroup />
-      </Modal> */}
     </div>
   );
 };

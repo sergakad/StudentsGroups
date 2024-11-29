@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Student } from "@/components/Student";
 import { useStudentsStore } from "@/stores/students-store";
 import { Modal } from "@/components/Modal";
@@ -7,7 +7,7 @@ import s from "./Students.module.scss";
 
 const Students: FC = () => {
   const students = useStudentsStore((state) => state.students);
-
+  const [isModalVisible, setModalVisible] = useState<boolean>(false);
   return (
     <div className={s.students}>
       {students.map((student) => {
@@ -23,14 +23,15 @@ const Students: FC = () => {
       })}
 
       <Modal
+        isActive={isModalVisible}
+        onActiveChange={setModalVisible}
         trigger={
           <div className={s.addStudent}>
             <h3 className={s.title}>+</h3>
           </div>
         }
-      >
-        <NewStudent />
-      </Modal>
+        content={<NewStudent />}
+      />
     </div>
   );
 };
