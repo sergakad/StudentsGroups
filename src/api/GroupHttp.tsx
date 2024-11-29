@@ -1,11 +1,10 @@
 import axios from "axios";
+import { $api } from ".";
 import { IGroup } from "@/shared/interfaces/group.interface";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const GetGroup = async (): Promise<IGroup[] | string> => {
   try {
-    const { data, status } = await axios.get<IGroup[]>(`${BASE_URL}/group`, {
+    const { data, status } = await $api.get<IGroup[]>("group", {
       headers: { Accept: "application/json" },
     });
     console.log(JSON.stringify(data, null, 4));
@@ -18,8 +17,8 @@ const GetGroup = async (): Promise<IGroup[] | string> => {
 
 const PostGroup = async (name: string): Promise<void | string> => {
   try {
-    const { data, status } = await axios.post<IGroup[]>(
-      `${BASE_URL}/group`,
+    const { data, status } = await $api.post<IGroup[]>(
+      "/group",
       { title: name },
       {
         headers: {
@@ -37,12 +36,9 @@ const PostGroup = async (name: string): Promise<void | string> => {
 
 const DeleteGroup = async (id: number): Promise<void | string> => {
   try {
-    const { data, status } = await axios.delete<IGroup[]>(
-      `${BASE_URL}/group/${id}`,
-      {
-        headers: { Accept: "application/json" },
-      }
-    );
+    const { data, status } = await $api.delete<IGroup[]>(`/group/${id}`, {
+      headers: { Accept: "application/json" },
+    });
     console.log(JSON.stringify(data, null, 4));
     console.log("response status: ", status);
   } catch (error) {
